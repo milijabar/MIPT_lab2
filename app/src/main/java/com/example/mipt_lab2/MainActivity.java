@@ -42,14 +42,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnCountClick(View view) {
-        if (this.spSelectionOptions.getSelectedItem().toString().equalsIgnoreCase("Symbols")) {
-            int result = TextCounter.countSymbols(this.edUserInput.getText().toString());
-            Log.i("CountResult", String.valueOf(result));
-            this.tvMain.setText(String.valueOf(result));
+        if (this.edUserInput.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Input is empty!", Toast.LENGTH_SHORT).show();
+            this.tvMain.setText("0");
         } else {
-            int result = TextCounter.countWords(this.edUserInput.getText().toString());
-            this.tvMain.setText(String.valueOf(result));
-            //Toast.makeText(this, "Not implemented", Toast.LENGTH_LONG).show();
+            if (this.spSelectionOptions.getSelectedItem().toString().equalsIgnoreCase("Symbols")) {
+                int result = TextCounter.countSymbols(this.edUserInput.getText().toString());
+                Log.i("CountResult", String.valueOf(result));
+                this.tvMain.setText(String.valueOf(result));
+            } else {
+                int result = TextCounter.countWords(this.edUserInput.getText().toString());
+                this.tvMain.setText(String.valueOf(result));
+                //Toast.makeText(this, "Not implemented", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
